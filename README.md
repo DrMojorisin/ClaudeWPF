@@ -1,5 +1,13 @@
 # WPFBase - Modern WPF MVVM Framework
 
+[![Build Status](https://github.com/DrMojorisin/ClaudeWPF/workflows/.NET%20Desktop%20CI/CD/badge.svg)](https://github.com/DrMojorisin/ClaudeWPF/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![.NET](https://img.shields.io/badge/.NET-9.0-blue.svg)](https://dotnet.microsoft.com/download)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/DrMojorisin/ClaudeWPF)](https://github.com/DrMojorisin/ClaudeWPF/releases)
+[![GitHub issues](https://img.shields.io/github/issues/DrMojorisin/ClaudeWPF)](https://github.com/DrMojorisin/ClaudeWPF/issues)
+[![GitHub stars](https://img.shields.io/github/stars/DrMojorisin/ClaudeWPF)](https://github.com/DrMojorisin/ClaudeWPF/stargazers)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://drmojorisin.github.io/ClaudeWPF/)
+
 A production-ready WPF MVVM framework built with modern .NET practices and comprehensive architecture patterns.
 
 ## 🚀 Features
