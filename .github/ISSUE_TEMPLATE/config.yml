@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/DrMojorisin/ClaudeWPF/blob/main/README.md
+    about: Please check the documentation first
+  - name: Getting Started Guide
+    url: https://github.com/DrMojorisin/ClaudeWPF/blob/main/GETTING_STARTED.md
+    about: Step-by-step guide for new users
+  - name: Discussions
+    url: https://github.com/DrMojorisin/ClaudeWPF/discussions
+    about: Ask questions and discuss ideas with the community
