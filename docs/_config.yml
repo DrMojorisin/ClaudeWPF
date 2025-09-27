@@ -1,0 +1,49 @@
+# GitHub Pages Configuration
+title: WPFBase Documentation
+description: Modern WPF MVVM Framework - Production-ready with comprehensive architecture patterns
+url: "https://drmojorisin.github.io"
+baseurl: "/ClaudeWPF"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Navigation
+header_pages:
+  - getting-started.md
+  - architecture.md
+  - api-reference.md
+  - examples.md
+  - contributing.md
+
+# SEO and social
+author: WPFBase Contributors
+twitter:
+  username: # Add your Twitter handle if you have one
+  card: summary_large_image
+
+# GitHub repository info
+repository: DrMojorisin/ClaudeWPF
+github_username: DrMojorisin
+
+# Custom variables
+wpfbase:
+  version: "1.0.0"
+  dotnet_version: "9.0"
+  nuget_packages:
+    - "CommunityToolkit.Mvvm"
+    - "Microsoft.Extensions.DependencyInjection"
+    - "AvalonDock"
+    - "Serilog"
+
+# Exclude from build
+exclude:
+  - development/
+  - README.md
