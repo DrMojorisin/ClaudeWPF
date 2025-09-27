@@ -1,0 +1,197 @@
+<UserControl x:Class="WPFBase.Views.ConverterExamples"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="600">
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            
+            <TextBlock Text="ValueConverters Library Examples" 
+                       FontSize="24" FontWeight="Bold" Margin="0,0,0,20" 
+                       HorizontalAlignment="Center"/>
+            
+            <!-- Boolean Converters Section -->
+            <GroupBox Header="Boolean Converters" Margin="0,10">
+                <StackPanel Margin="10">
+                    
+                    <TextBlock Text="Boolean to Visibility Converter:" FontWeight="Bold" Margin="0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <CheckBox x:Name="VisibilityCheckBox" Content="Show/Hide Rectangle" IsChecked="True"/>
+                        <Rectangle Width="50" Height="20" Fill="Blue" Margin="10,0" 
+                                   Visibility="{Binding ElementName=VisibilityCheckBox, Path=IsChecked, 
+                                               Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="Inverted Boolean to Visibility:" FontWeight="Bold" Margin="0,10,0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <CheckBox x:Name="InvertedVisibilityCheckBox" Content="Hide/Show Rectangle" IsChecked="False"/>
+                        <Rectangle Width="50" Height="20" Fill="Red" Margin="10,0" 
+                                   Visibility="{Binding ElementName=InvertedVisibilityCheckBox, Path=IsChecked, 
+                                               Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </GroupBox>
+            
+            <!-- String Converters Section -->
+            <GroupBox Header="String Converters" Margin="0,10">
+                <StackPanel Margin="10">
+                    
+                    <TextBlock Text="Is Null or Empty to Visibility:" FontWeight="Bold" Margin="0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <TextBox x:Name="StringInput" Text="Type here..." Width="200"/>
+                        <TextBlock Text="Text is not empty!" Margin="10,0" Foreground="Green"
+                                   Visibility="{Binding ElementName=StringInput, Path=Text, 
+                                               Converter={StaticResource IsNullOrEmptyToVisibilityConverter}, ConverterParameter=Inverted}"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="String Format:" FontWeight="Bold" Margin="0,10,0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <Slider x:Name="NumberSlider" Value="42" Minimum="0" Maximum="100" Width="200"/>
+                        <TextBlock Text="{Binding ElementName=NumberSlider, Path=Value, 
+                                         StringFormat='Progress: {0:F0}%'}" Margin="10,0"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </GroupBox>
+            
+            <!-- Math Converters Section -->
+            <GroupBox Header="Math Converters" Margin="0,10">
+                <StackPanel Margin="10">
+                    
+                    <TextBlock Text="Math Add Converter (Value + 5):" FontWeight="Bold" Margin="0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <Slider x:Name="MathSlider" Value="10" Minimum="0" Maximum="50" Width="200"/>
+                        <TextBlock Text="{Binding ElementName=MathSlider, Path=Value}" Margin="10,0"/>
+                        <TextBlock Text=" + 5 = " Margin="5,0" Foreground="Gray"/>
+                        <TextBlock Text="{Binding ElementName=MathSlider, Path=Value, 
+                                         Converter={StaticResource MathAddConverter}, ConverterParameter=5}" Margin="0,0"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </GroupBox>
+            
+            <!-- DateTime Converters Section -->
+            <GroupBox Header="DateTime Converters" Margin="0,10">
+                <StackPanel Margin="10">
+                    
+                    <TextBlock Text="Current DateTime:" FontWeight="Bold" Margin="0,5"/>
+                    <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, 
+                                     StringFormat='yyyy-MM-dd HH:mm:ss'}" 
+                               Margin="0,5"/>
+                    
+                </StackPanel>
+            </GroupBox>
+            
+            <!-- Custom Converters Section -->
+            <GroupBox Header="Custom Application Converters" Margin="0,10">
+                <StackPanel Margin="10">
+                    
+                    <TextBlock Text="Document Count Converter:" FontWeight="Bold" Margin="0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <Slider x:Name="DocumentSlider" Value="3" Minimum="0" Maximum="10" Width="200"/>
+                        <TextBlock Text="{Binding ElementName=DocumentSlider, Path=Value, 
+                                         Converter={StaticResource DocumentCountConverter}}" Margin="10,0"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="Theme Name Converter:" FontWeight="Bold" Margin="0,10,0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <ComboBox x:Name="ThemeCombo" SelectedIndex="0" Width="150">
+                            <ComboBoxItem Content="Light"/>
+                            <ComboBoxItem Content="Dark"/>
+                            <ComboBoxItem Content="HighContrast"/>
+                        </ComboBox>
+                        <TextBlock Text="{Binding ElementName=ThemeCombo, Path=SelectedItem.Content, 
+                                         Converter={StaticResource ThemeNameConverter}}" 
+                                   Margin="10,0" FontWeight="Bold"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="File Size Converter:" FontWeight="Bold" Margin="0,10,0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <Slider x:Name="FileSizeSlider" Value="1048576" Minimum="0" Maximum="1073741824" Width="200"/>
+                        <TextBlock Text="{Binding ElementName=FileSizeSlider, Path=Value, 
+                                         Converter={StaticResource FileSizeConverter}}" Margin="10,0"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="Progress to Brush Converter:" FontWeight="Bold" Margin="0,10,0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <Slider x:Name="ProgressSlider" Value="50" Minimum="0" Maximum="100" Width="200"/>
+                        <ProgressBar Value="{Binding ElementName=ProgressSlider, Path=Value}" 
+                                     Maximum="100" Width="100" Height="20" Margin="10,0"
+                                     Foreground="{Binding ElementName=ProgressSlider, Path=Value, 
+                                                 Converter={StaticResource ProgressToBrushConverter}}"/>
+                        <TextBlock Text="{Binding ElementName=ProgressSlider, Path=Value, StringFormat='{}{0:F0}%'}" 
+                                   Margin="10,0"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </GroupBox>
+            
+            <!-- Multi-Value Converters Section -->
+            <GroupBox Header="Multi-Value Converters" Margin="0,10">
+                <StackPanel Margin="10">
+                    
+                    <TextBlock Text="Multi-Boolean AND Converter:" FontWeight="Bold" Margin="0,5"/>
+                    <StackPanel Margin="0,5">
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <CheckBox x:Name="AndCheck1" Content="Condition 1" IsChecked="True"/>
+                            <CheckBox x:Name="AndCheck2" Content="Condition 2" IsChecked="False" Margin="20,0,0,0"/>
+                            <CheckBox x:Name="AndCheck3" Content="Condition 3" IsChecked="True" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <TextBlock Margin="0,5">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource MultiBooleanAndConverter}" StringFormat="All conditions true: {0}">
+                                    <Binding ElementName="AndCheck1" Path="IsChecked"/>
+                                    <Binding ElementName="AndCheck2" Path="IsChecked"/>
+                                    <Binding ElementName="AndCheck3" Path="IsChecked"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                    
+                    <TextBlock Text="Multi-Boolean OR Converter:" FontWeight="Bold" Margin="0,10,0,5"/>
+                    <StackPanel Margin="0,5">
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <CheckBox x:Name="OrCheck1" Content="Condition A" IsChecked="False"/>
+                            <CheckBox x:Name="OrCheck2" Content="Condition B" IsChecked="False" Margin="20,0,0,0"/>
+                            <CheckBox x:Name="OrCheck3" Content="Condition C" IsChecked="False" Margin="20,0,0,0"/>
+                        </StackPanel>
+                        <TextBlock Margin="0,5">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource MultiBooleanOrConverter}" StringFormat="Any condition true: {0}">
+                                    <Binding ElementName="OrCheck1" Path="IsChecked"/>
+                                    <Binding ElementName="OrCheck2" Path="IsChecked"/>
+                                    <Binding ElementName="OrCheck3" Path="IsChecked"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </GroupBox>
+            
+            <!-- Usage Notes -->
+            <GroupBox Header="Usage Notes" Margin="0,10">
+                <StackPanel Margin="10">
+                    <TextBlock TextWrapping="Wrap" Margin="0,2">
+                        • All ValueConverters library converters are automatically available through App.xaml resource registration
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,2">
+                        • Custom converters are defined in the Converters folder and registered in App.xaml
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,2">
+                        • Use ConverterParameter for additional converter configuration
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,2">
+                        • Multi-value converters work with MultiBinding for complex scenarios
+                    </TextBlock>
+                </StackPanel>
+            </GroupBox>
+            
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

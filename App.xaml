@@ -1,0 +1,77 @@
+﻿<Application x:Class="WPFBase.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPFBase"
+             xmlns:converters="clr-namespace:WPFBase.Converters">
+    <Application.Resources>
+        <!-- Import ValueConverters library resources -->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- ValueConverters will be loaded if available -->
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!-- Custom application-specific converters -->
+            <converters:DocumentCountConverter x:Key="DocumentCountConverter"/>
+            <converters:ThemeNameConverter x:Key="ThemeNameConverter"/>
+            <converters:DirtyStateToSymbolConverter x:Key="DirtyStateToSymbolConverter"/>
+            <converters:ProgressToBrushConverter x:Key="ProgressToBrushConverter"/>
+            <converters:FileSizeConverter x:Key="FileSizeConverter"/>
+            <converters:MultiBooleanAndConverter x:Key="MultiBooleanAndConverter"/>
+            <converters:MultiBooleanOrConverter x:Key="MultiBooleanOrConverter"/>
+            
+            <!-- Validation Error Template -->
+            <ControlTemplate x:Key="ValidationErrorTemplate">
+                <DockPanel>
+                    <Border BorderBrush="Red" BorderThickness="1" CornerRadius="2" DockPanel.Dock="Right" Margin="5,0,0,0" Width="16" Height="16" ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                        <TextBlock Text="!" FontSize="11" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red"/>
+                    </Border>
+                    <AdornedElementPlaceholder Name="customAdorner"/>
+                </DockPanel>
+            </ControlTemplate>
+            
+            <!-- Validation Style for TextBox -->
+            <Style x:Key="ValidatedTextBox" TargetType="{x:Type TextBox}">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationErrorTemplate}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="3"/>
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="BorderBrush" Value="Red"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+            <!-- Validation Style for PasswordBox -->
+            <Style x:Key="ValidatedPasswordBox" TargetType="{x:Type PasswordBox}">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationErrorTemplate}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="3"/>
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="BorderBrush" Value="Red"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+            <!-- Validation Style for ComboBox -->
+            <Style x:Key="ValidatedComboBox" TargetType="{x:Type ComboBox}">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationErrorTemplate}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="BorderBrush" Value="Red"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

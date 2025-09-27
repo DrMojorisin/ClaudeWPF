@@ -1,0 +1,3 @@
+@echo off
+echo Starting WPF MVVM Application...
+dotnet run

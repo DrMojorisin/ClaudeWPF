@@ -1,0 +1,18 @@
+{
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "cwd": "${workspaceFolder}",
+            "args": ["-NoExit", "-Command", "cd '${workspaceFolder}'"]
+        }
+    },
+    "terminal.integrated.env.windows": {
+        "FORCE_CWD": "${workspaceFolder}"
+    },
+    "workbench.colorCustomizations":  {
+        "sideBar.background": "#00BCD420",
+        "sideBar.foreground": "#E0E0E0"
+    }
+}

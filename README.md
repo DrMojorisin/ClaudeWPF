@@ -1,87 +1,70 @@
-# WPFBase - Production-Ready WPF Framework for Claude Code
+# WPFBase - Modern WPF MVVM Framework
 
-🚀 **Built specifically for Claude Code automation** - A bulletproof WPF MVVM framework designed for rapid, reliable development with AI-assisted coding.
+A production-ready WPF MVVM framework built with modern .NET practices and comprehensive architecture patterns.
 
-## 🎯 Why WPFBase + Claude Code?
-
-This framework transforms WPF development by providing:
-- **85%+ Test Coverage** - Thoroughly validated components
-- **Claude Code Optimized** - Patterns designed for AI code generation  
-- **Zero Configuration** - Drop into any project and start coding
-- **Production Ready** - Thread-safe, memory leak-free, error-resilient
-- **Comprehensive Documentation** - Detailed guides for Claude Code integration
-
-## Features
+## 🚀 Features
 
 ### Core Architecture
-- **MVVM Pattern** with CommunityToolkit.Mvvm source generators
+- **Modern MVVM** with CommunityToolkit.Mvvm source generators
 - **Dependency Injection** using Microsoft.Extensions.DependencyInjection
 - **Async/Await** patterns throughout
 - **Repository Pattern** with Unit of Work for data access
 
 ### UI & UX
-- **AvalonDock** (Dirkster) - Visual Studio-style docking windows
+- **AvalonDock** - Visual Studio-style docking windows
 - **Theme Management** - Light/Dark themes with runtime switching
 - **Value Converters** - Comprehensive library of XAML converters
 - **Validation** - Both DataAnnotations and FluentValidation support
-- **Custom Controls** - Reusable WPF controls with validation summaries
+- **Custom Controls** - Reusable WPF controls
 
 ### Services
-- **Navigation Service** - Type-safe navigation with parameter passing
+- **Navigation Service** - Type-safe navigation with parameters
 - **Dialog Service** - Unified dialog management (messages, files, custom)
 - **Message Bus** - Decoupled pub/sub communication
-- **Configuration Service** - JSON-based configuration management
-- **User Settings** - Persistent user preferences with JSON storage
-- **Keyboard Shortcuts** - Customizable keyboard shortcut system
+- **Configuration Service** - JSON-based configuration
+- **User Settings** - Persistent user preferences
+- **Keyboard Shortcuts** - Customizable keyboard shortcuts
 - **Logging** - Structured logging with Serilog
-- **Exception Handling** - Global exception handling with detailed reporting
+- **Theme Service** - Runtime theme switching
 
-### Claude Code Integration
-- **Intelligent Patterns** - Pre-built templates for rapid development
-- **Error Prevention** - Guards against common pitfalls
-- **Predictable Behavior** - Consistent, testable components
-- **Production Hardened** - Memory management, thread safety, error handling
+## 📁 Project Structure
 
-### Development Tools
-- **Hot Reload** support for XAML
-- **Source Generators** for boilerplate reduction  
-- **85%+ Unit Test Coverage** with xUnit and Moq
-- **Comprehensive Claude Code guides** - Best practices, pitfalls, patterns
+```
+WPFBase/
+├── Commands/           # Custom ICommand implementations
+├── Controls/           # Reusable WPF controls
+├── Converters/         # XAML value converters
+├── Data/              # Repository and data access
+├── Extensions/        # C# extension methods
+├── Interfaces/        # Service contracts
+├── Models/           # Data models and DTOs
+├── Resources/        # Icons, images, assets
+├── Services/         # Service implementations
+├── Themes/          # Application themes and styles
+├── Validators/      # FluentValidation validators
+├── ViewModels/      # MVVM ViewModels
+├── Views/           # XAML views and code-behind
+└── scripts/         # Build and utility scripts
+```
 
-## 📚 Claude Code Documentation
+Each folder contains a README.md explaining its purpose and usage patterns.
 
-**Essential reading for Claude Code integration:**
+## 🛠️ Prerequisites
 
-- **[CLAUDE.md](CLAUDE.md)** - Complete framework API and usage guide
-- **[CLAUDE_CODE_BEST_PRACTICES.md](CLAUDE_CODE_BEST_PRACTICES.md)** - Development workflow and patterns  
-- **[CLAUDE_CODE_ADVANCED_GUIDE.md](CLAUDE_CODE_ADVANCED_GUIDE.md)** - Advanced usage and troubleshooting
-- **[CLAUDE_CODE_PITFALLS_GUIDE.md](CLAUDE_CODE_PITFALLS_GUIDE.md)** - Common mistakes and solutions
-- **[CLAUDE_CODE_USAGE_PATTERNS.md](CLAUDE_CODE_USAGE_PATTERNS.md)** - Proven implementation patterns
-- **[TESTING_COMPREHENSIVE_SUMMARY.md](TESTING_COMPREHENSIVE_SUMMARY.md)** - Complete test coverage details
-
-## 🚀 Quick Start for Claude Code
-
-### Copy Framework to Your Project
-
-**For Claude Code users:**
-1. Copy the entire `WPFBase` folder into your project
-2. Update namespaces in all files to match your project
-3. Register your services in `App.xaml.cs`
-4. Start building with Claude Code using the provided patterns
-
-### Prerequisites
-- .NET 9.0 SDK or later  
+- .NET 9.0 SDK or later
 - Visual Studio 2022 / VS Code / Rider
 - Windows 10/11
 
-### Installation
+## 🚀 Quick Start
+
+### 1. Clone or Download
 ```bash
-# Copy WPFBase to your project directory
-cp -r WPFBase/ /path/to/your/project/
+git clone https://github.com/yourusername/WPFBase.git
+cd WPFBase
+```
 
-# Navigate to your project directory  
-cd /path/to/your/project/
-
+### 2. Build and Run
+```bash
 # Restore packages
 dotnet restore
 
@@ -92,220 +75,131 @@ dotnet build
 dotnet run
 ```
 
-### Claude Code Development Workflow
+### 3. Create Your First Feature
 
-**Follow these patterns with Claude Code for guaranteed success:**
-
-1. **Create ViewModel using Framework Pattern:**
+**Create a ViewModel:**
 ```csharp
-public partial class CustomerListViewModel : ViewModelBase
+public partial class MyViewModel : ViewModelBase
 {
-    private readonly ICustomerService _customerService;
     private readonly IDialogService _dialogService;
-    
-    public CustomerListViewModel(ICustomerService customerService, IDialogService dialogService)
+
+    public MyViewModel(IDialogService dialogService)
     {
-        _customerService = customerService ?? throw new ArgumentNullException(nameof(customerService));
-        _dialogService = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
-        Title = "Customer List"; // REQUIRED for docking
+        _dialogService = dialogService;
+        Title = "My Feature";
     }
-    
+
     [ObservableProperty]
-    private ObservableCollection<Customer> customers = new();
-    
+    private string message = "Hello World!";
+
     [RelayCommand]
-    private async Task LoadCustomersAsync()
+    private async Task ShowMessageAsync()
     {
-        IsBusy = true;
-        try
-        {
-            var customerList = await _customerService.GetAllAsync();
-            Customers.Clear();
-            foreach (var customer in customerList) Customers.Add(customer);
-        }
-        catch (Exception ex)
-        {
-            await _dialogService.ShowErrorAsync("Failed to load customers", "Error", ex);
-        }
-        finally
-        {
-            IsBusy = false;
-        }
+        await _dialogService.ShowInformationAsync(Message, "Info");
     }
 }
 ```
 
-2. **Create Service with Interface:**
+**Create a View:**
+```xml
+<UserControl x:Class="WPFBase.Views.MyView">
+    <StackPanel Margin="20">
+        <TextBox Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Content="Show Message" Command="{Binding ShowMessageCommand}" />
+    </StackPanel>
+</UserControl>
+```
+
+**Register in DI Container (App.xaml.cs):**
 ```csharp
-public interface ICustomerService
-{
-    Task<List<Customer>> GetAllAsync();
-    Task<Customer> CreateAsync(Customer customer);
-}
-
-public class CustomerService : ICustomerService
-{
-    private readonly ILoggingService _logging;
-    
-    public CustomerService(ILoggingService logging)
-    {
-        _logging = logging ?? throw new ArgumentNullException(nameof(logging));
-    }
-    
-    public async Task<List<Customer>> GetAllAsync()
-    {
-        try
-        {
-            _logging.LogInformation("Retrieving customers");
-            // Implementation
-            return customers;
-        }
-        catch (Exception ex)
-        {
-            _logging.LogError(ex, "Failed to retrieve customers");
-            throw;
-        }
-    }
-}
+services.AddTransient<MyViewModel>();
+services.AddTransient<MyView>();
 ```
 
-3. **Register Everything in DI Container:**
+## 🔧 Key Technologies
+
+- **CommunityToolkit.Mvvm 8.4.0** - Modern MVVM with source generators
+- **AvalonDock** - Professional docking windows
+- **Serilog** - Structured logging
+- **FluentValidation** - Business rule validation
+- **WPF-UI** - Modern UI components
+- **xUnit + Moq** - Comprehensive testing
+
+## 📚 Architecture Patterns
+
+### MVVM with Source Generators
+Uses modern CommunityToolkit.Mvvm patterns:
+- `[ObservableProperty]` for automatic property generation
+- `[RelayCommand]` for automatic command generation
+- `ObservableValidator` for validation support
+
+### Service Layer
+All services follow interface-based design:
+- Easy to test with mocking
+- Dependency injection throughout
+- Clear separation of concerns
+
+### Navigation & Dialogs
+Type-safe navigation and comprehensive dialog system:
 ```csharp
-// App.xaml.cs - ConfigureServices method
-services.AddSingleton<ICustomerService, CustomerService>();
-services.AddTransient<CustomerListViewModel>();
-services.AddTransient<CustomerListView>();
+// Navigate to a view
+await _navigationService.NavigateToAsync<CustomerViewModel>();
+
+// Show dialogs
+await _dialogService.ShowInformationAsync("Message", "Title");
+var result = await _dialogService.ShowConfirmationAsync("Are you sure?");
 ```
 
-4. **Navigate with Navigation Service:**
-```csharp
-await _navigationService.NavigateToAsync<CustomerListViewModel>();
-```
+## 🧪 Testing
 
-## Architecture
-
-```
-WPFBase/
-├── Commands/           # Custom ICommand implementations
-├── Controls/           # Reusable WPF controls
-├── Converters/         # Value converters for XAML
-├── Data/              # Data access layer
-│   ├── Models/        # Entity models
-│   └── Repositories/  # Repository implementations
-├── Extensions/        # Extension methods
-├── Interfaces/        # Service contracts
-├── Models/           # DTOs and view models
-├── Resources/        # Icons, images, styles
-├── Services/         # Service implementations
-├── Themes/          # Application themes
-├── Validators/      # FluentValidation validators
-├── ViewModels/      # MVVM ViewModels
-│   ├── Documents/   # Document-based VMs
-│   └── Tools/       # Tool window VMs
-└── Views/           # XAML views
-    ├── Documents/   # Document views
-    └── Tools/       # Tool window views
-```
-
-## Key Components
-
-### ViewModels
-All ViewModels inherit from `ViewModelBase` which provides:
-- `IsBusy` property for loading states
-- `Title` property for view titles
-- Navigation lifecycle methods
-- Property change notification
-
-### Services
-- **INavigationService**: Navigate between views
-- **IDialogService**: Show dialogs and popups
-- **IMessageBus**: Publish/subscribe messaging
-- **IDockingService**: Manage docking windows
-- **IThemeService**: Manage application themes
-- **IUserSettingsService**: Persist user preferences
-
-### Validation
-Two validation approaches:
-1. **DataAnnotations**: Simple attribute-based validation
-2. **FluentValidation**: Complex business rule validation
-
-## 🧪 Testing Coverage: 85%+ Production Ready
-
-The framework includes comprehensive test coverage ensuring reliability:
+The framework includes comprehensive unit tests:
 
 ```bash
-# Run all tests (400+ test methods)
+# Run all tests
 dotnet test
 
-# Run with coverage analysis
+# Run with coverage
 dotnet test /p:CollectCoverage=true
 
-# Run specific component tests
-dotnet test --filter "FullyQualifiedName~NavigationServiceTests"
+# Run specific tests
+dotnet test --filter "NavigationServiceTests"
 ```
 
-**Test Coverage Highlights:**
-- **NavigationService**: 24 test methods - Parameter passing, history, caching
-- **DialogService**: 20 test methods - All dialog types, error handling  
-- **DockingService**: 45 test methods - Document/tool management, layout persistence
-- **ValidationServices**: 47 test methods - DataAnnotations + FluentValidation
-- **ConfigurationServices**: 62 test methods - JSON persistence, thread safety
-- **MessageBus**: Thread-safe concurrent operations validated
+## 📖 Documentation
 
-## 📖 Complete Documentation Suite
+Each folder contains detailed README files explaining:
+- Purpose and usage
+- Code examples
+- Best practices
+- Common patterns
 
-## 🚀 Production Metrics
+## 🎯 Use Cases
 
-**Reliability Score: 9.5/10** ⭐
+This framework is perfect for:
+- Enterprise desktop applications
+- Document-based applications (with docking)
+- Configuration tools and utilities
+- Data management applications
+- Rapid prototyping with production-ready code
 
-This framework has been battle-tested and is production-ready for:
-- ✅ Enterprise application development
-- ✅ Claude Code automated development 
-- ✅ Team collaboration environments
-- ✅ Continuous integration pipelines
-- ✅ Long-term maintenance and evolution
+## 🤝 Contributing
 
-**Key Achievements:**
-- **400+ test methods** across all components
-- **Zero memory leaks** with proper disposal patterns
-- **Thread-safe** concurrent operations throughout
-- **Comprehensive error handling** with graceful degradation
-- **Claude Code optimized** patterns and documentation
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
 
-## 🎯 Why Choose WPFBase?
-
-**For Development Teams:**
-- **Faster Development**: Pre-built patterns reduce development time by 60%
-- **Higher Quality**: 85% test coverage ensures reliability
-- **Consistent Code**: Standardized patterns across all components
-- **Easy Maintenance**: Well-documented, predictable architecture
-
-**For Claude Code Users:**
-- **AI-Optimized**: Patterns designed specifically for LLM code generation
-- **Error Prevention**: Guards against common AI coding mistakes  
-- **Predictable Results**: Consistent, testable output every time
-- **Production Ready**: Skip prototyping, go straight to production
-
-## 📞 Support & Community
-
-**Need help with WPFBase + Claude Code?**
-- 📚 **Start with**: [CLAUDE.md](CLAUDE.md) - Complete framework guide
-- 🔧 **Common Issues**: [CLAUDE_CODE_PITFALLS_GUIDE.md](CLAUDE_CODE_PITFALLS_GUIDE.md)
-- 📋 **Best Practices**: [CLAUDE_CODE_BEST_PRACTICES.md](CLAUDE_CODE_BEST_PRACTICES.md)
-- 🎯 **Usage Patterns**: [CLAUDE_CODE_USAGE_PATTERNS.md](CLAUDE_CODE_USAGE_PATTERNS.md)
-
-## 🏆 Powered By
-
-- **CommunityToolkit.Mvvm** - Modern MVVM with source generators
-- **AvalonDock** - Professional docking windows  
-- **Serilog** - Structured logging excellence
-- **FluentValidation** - Powerful business rule validation
-- **xUnit + Moq** - Comprehensive testing framework
-
-## License
+## 📄 License
 
 MIT License - Use freely in commercial and open-source projects.
 
+## 🆘 Support
+
+- **Documentation**: Check folder README files for detailed usage
+- **Issues**: Report bugs and feature requests in GitHub Issues
+- **Examples**: See the included sample ViewModels and Views
+
 ---
 
-🤖 **Engineered for Claude Code** | 🔥 **Production Ready** | ⚡ **Rapid Development**# ClaudeWPF
+**Built with modern .NET practices for robust, maintainable WPF applications.**

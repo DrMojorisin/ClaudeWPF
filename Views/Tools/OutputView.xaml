@@ -1,0 +1,43 @@
+<UserControl x:Class="WPFBase.Views.Tools.OutputView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Toolbar -->
+        <ToolBar Grid.Row="0">
+            <Button Command="{Binding ClearCommand}" ToolTip="Clear Output" Padding="2"
+                    IsEnabled="{Binding OutputText, Converter={StaticResource IsNullOrEmptyToBooleanConverter}, ConverterParameter=Inverted}">
+                <TextBlock Text="🗑️" FontSize="14"/>
+            </Button>
+            <Separator/>
+            <CheckBox IsChecked="{Binding AutoScroll}" Content="Auto Scroll" VerticalAlignment="Center"/>
+            <Separator/>
+            <TextBlock Text="{Binding OutputText.Length, StringFormat='Characters: {0}'}" 
+                       VerticalAlignment="Center" Margin="5,0"
+                       Visibility="{Binding OutputText, Converter={StaticResource IsNullOrEmptyToVisibilityConverter}, ConverterParameter=Inverted}"/>
+        </ToolBar>
+        
+        <!-- Output Text -->
+        <ScrollViewer Grid.Row="1" 
+                      Name="OutputScrollViewer"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+            <TextBox Text="{Binding OutputText}" 
+                     IsReadOnly="True"
+                     FontFamily="Consolas"
+                     FontSize="12"
+                     Background="{DynamicResource BackgroundColorBrush}"
+                     Foreground="{DynamicResource ForegroundColorBrush}"
+                     BorderThickness="0"
+                     TextWrapping="Wrap"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

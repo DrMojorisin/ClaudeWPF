@@ -1,0 +1,358 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Modern Design System for WPF 2024 -->
+    <!-- Implements Windows 11 Fluent design principles -->
+
+    <!-- Design Tokens (2024 Best Practice) -->
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Merge with .NET 9 Fluent theme if available -->
+        <ResourceDictionary Source="/PresentationFramework.Fluent;component/Themes/Fluent.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Modern Color Palette -->
+    <!-- Primary Colors -->
+    <Color x:Key="PrimaryBlue">#005FB8</Color>
+    <Color x:Key="PrimaryBlueHover">#0078D4</Color>
+    <Color x:Key="PrimaryBluePressed">#004578</Color>
+
+    <!-- Semantic Colors -->
+    <Color x:Key="SuccessGreen">#0F7B0F</Color>
+    <Color x:Key="WarningOrange">#FF8C00</Color>
+    <Color x:Key="ErrorRed">#D13438</Color>
+    <Color x:Key="InfoBlue">#0078D4</Color>
+
+    <!-- Surface Colors -->
+    <Color x:Key="SurfaceColor">#F3F3F3</Color>
+    <Color x:Key="CardColor">#FFFFFF</Color>
+    <Color x:Key="LayerColor">#F9F9F9</Color>
+
+    <!-- Text Colors -->
+    <Color x:Key="TextPrimary">#323130</Color>
+    <Color x:Key="TextSecondary">#605E5C</Color>
+    <Color x:Key="TextDisabled">#A19F9D</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryBlue}"/>
+    <SolidColorBrush x:Key="PrimaryHoverBrush" Color="{StaticResource PrimaryBlueHover}"/>
+    <SolidColorBrush x:Key="PrimaryPressedBrush" Color="{StaticResource PrimaryBluePressed}"/>
+
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessGreen}"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningOrange}"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorRed}"/>
+    <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource InfoBlue}"/>
+
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+    <SolidColorBrush x:Key="CardBrush" Color="{StaticResource CardColor}"/>
+    <SolidColorBrush x:Key="LayerBrush" Color="{StaticResource LayerColor}"/>
+
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimary}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondary}"/>
+    <SolidColorBrush x:Key="TextDisabledBrush" Color="{StaticResource TextDisabled}"/>
+
+    <!-- Typography Scale (2024 Standard) -->
+    <FontFamily x:Key="SegoeUIVariable">Segoe UI Variable</FontFamily>
+
+    <!-- Display -->
+    <Style x:Key="DisplayLargeText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="LineHeight" Value="40"/>
+    </Style>
+
+    <Style x:Key="DisplayMediumText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="LineHeight" Value="36"/>
+    </Style>
+
+    <!-- Headlines -->
+    <Style x:Key="HeadlineLargeText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="LineHeight" Value="32"/>
+    </Style>
+
+    <Style x:Key="HeadlineMediumText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="LineHeight" Value="28"/>
+    </Style>
+
+    <Style x:Key="HeadlineSmallText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="LineHeight" Value="24"/>
+    </Style>
+
+    <!-- Body -->
+    <Style x:Key="BodyLargeText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="LineHeight" Value="24"/>
+    </Style>
+
+    <Style x:Key="BodyMediumText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="LineHeight" Value="20"/>
+    </Style>
+
+    <Style x:Key="BodySmallText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="LineHeight" Value="16"/>
+    </Style>
+
+    <!-- Labels -->
+    <Style x:Key="LabelLargeText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="LineHeight" Value="20"/>
+    </Style>
+
+    <Style x:Key="LabelMediumText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="LineHeight" Value="16"/>
+    </Style>
+
+    <!-- Spacing System (8pt grid) -->
+    <sys:Double x:Key="Spacing1" xmlns:sys="clr-namespace:System;assembly=mscorlib">4</sys:Double>
+    <sys:Double x:Key="Spacing2" xmlns:sys="clr-namespace:System;assembly=mscorlib">8</sys:Double>
+    <sys:Double x:Key="Spacing3" xmlns:sys="clr-namespace:System;assembly=mscorlib">12</sys:Double>
+    <sys:Double x:Key="Spacing4" xmlns:sys="clr-namespace:System;assembly=mscorlib">16</sys:Double>
+    <sys:Double x:Key="Spacing5" xmlns:sys="clr-namespace:System;assembly=mscorlib">20</sys:Double>
+    <sys:Double x:Key="Spacing6" xmlns:sys="clr-namespace:System;assembly=mscorlib">24</sys:Double>
+    <sys:Double x:Key="Spacing8" xmlns:sys="clr-namespace:System;assembly=mscorlib">32</sys:Double>
+    <sys:Double x:Key="Spacing10" xmlns:sys="clr-namespace:System;assembly=mscorlib">40</sys:Double>
+    <sys:Double x:Key="Spacing12" xmlns:sys="clr-namespace:System;assembly=mscorlib">48</sys:Double>
+
+    <!-- Border Radius (Windows 11 Style) -->
+    <CornerRadius x:Key="ControlCornerRadius">4</CornerRadius>
+    <CornerRadius x:Key="OverlayCornerRadius">8</CornerRadius>
+    <CornerRadius x:Key="CardCornerRadius">8</CornerRadius>
+
+    <!-- Elevation Shadows -->
+    <DropShadowEffect x:Key="Elevation1"
+                      BlurRadius="2"
+                      ShadowDepth="1"
+                      Opacity="0.14"
+                      Color="Black"/>
+
+    <DropShadowEffect x:Key="Elevation2"
+                      BlurRadius="4"
+                      ShadowDepth="2"
+                      Opacity="0.14"
+                      Color="Black"/>
+
+    <DropShadowEffect x:Key="Elevation3"
+                      BlurRadius="8"
+                      ShadowDepth="4"
+                      Opacity="0.14"
+                      Color="Black"/>
+
+    <!-- Modern Button Styles -->
+    <Style x:Key="ModernPrimaryButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="{StaticResource Spacing4},8"/>
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="MinHeight" Value="32"/>
+        <Setter Property="Effect" Value="{StaticResource Elevation1}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{StaticResource ControlCornerRadius}">
+                        <ContentPresenter x:Name="contentPresenter"
+                                        Focusable="False"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Margin="{TemplateBinding Padding}"
+                                        RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryHoverBrush}"/>
+                            <Setter Property="Effect" Value="{StaticResource Elevation2}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryPressedBrush}"/>
+                            <Setter Property="Effect" Value="{StaticResource Elevation1}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource TextDisabledBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource TextDisabledBrush}"/>
+                            <Setter Property="Effect" Value="{x:Null}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ModernSecondaryButton" TargetType="Button" BasedOn="{StaticResource ModernPrimaryButton}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Effect" Value="{x:Null}"/>
+    </Style>
+
+    <!-- Modern TextBox Style -->
+    <Style x:Key="ModernTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource CardBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TextSecondaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="{StaticResource Spacing3},8"/>
+        <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="MinHeight" Value="32"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{StaticResource ControlCornerRadius}">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                    Focusable="False"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden"
+                                    Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                            <Setter TargetName="border" Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource SurfaceBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource TextDisabledBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Modern Card Style -->
+    <Style x:Key="ModernCard" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource CardBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SurfaceBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="{StaticResource CardCornerRadius}"/>
+        <Setter Property="Padding" Value="{StaticResource Spacing6}"/>
+        <Setter Property="Effect" Value="{StaticResource Elevation1}"/>
+    </Style>
+
+    <!-- Modern DataGrid Style with Virtualization -->
+    <Style x:Key="ModernDataGrid" TargetType="DataGrid">
+        <Setter Property="Background" Value="{StaticResource CardBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SurfaceBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="RowBackground" Value="Transparent"/>
+        <Setter Property="AlternatingRowBackground" Value="{StaticResource LayerBrush}"/>
+        <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource SurfaceBrush}"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <!-- Enable virtualization for performance -->
+        <Setter Property="EnableRowVirtualization" Value="True"/>
+        <Setter Property="EnableColumnVirtualization" Value="True"/>
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+        <Setter Property="VirtualizingPanel.ScrollUnit" Value="Item"/>
+    </Style>
+
+    <!-- Modern ListBox with Virtualization -->
+    <Style x:Key="ModernListBox" TargetType="ListBox">
+        <Setter Property="Background" Value="{StaticResource CardBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SurfaceBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <!-- Enable virtualization for performance -->
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+        <Setter Property="VirtualizingPanel.ScrollUnit" Value="Item"/>
+        <Setter Property="VirtualizingPanel.CacheLengthUnit" Value="Item"/>
+        <Setter Property="VirtualizingPanel.CacheLength" Value="20,20"/>
+    </Style>
+
+    <!-- Status Indicator Styles -->
+    <Style x:Key="SuccessIndicator" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource SuccessBrush}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="8,4"/>
+    </Style>
+
+    <Style x:Key="WarningIndicator" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource WarningBrush}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="8,4"/>
+    </Style>
+
+    <Style x:Key="ErrorIndicator" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource ErrorBrush}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="8,4"/>
+    </Style>
+
+    <Style x:Key="InfoIndicator" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource InfoBrush}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="8,4"/>
+    </Style>
+
+    <!-- Progress Bar Modern Style -->
+    <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
+        <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Height" Value="4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="2">
+                        <Border x:Name="PART_Track">
+                            <Border x:Name="PART_Indicator"
+                                    Background="{TemplateBinding Foreground}"
+                                    HorizontalAlignment="Left"
+                                    CornerRadius="2"/>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

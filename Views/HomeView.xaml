@@ -1,0 +1,175 @@
+<UserControl x:Class="WPFBase.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFBase.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Welcome Section -->
+        <Border Grid.Row="0" 
+                Background="White" 
+                CornerRadius="5" 
+                Padding="20" 
+                Margin="0,0,0,20">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" Opacity="0.2"/>
+            </Border.Effect>
+            
+            <StackPanel>
+                <TextBlock Text="{Binding WelcomeMessage}"
+                          FontSize="24"
+                          FontWeight="Bold"
+                          Foreground="#2C3E50"
+                          TextWrapping="Wrap"
+                          Margin="0,0,0,10"/>
+                
+                <TextBlock Text="This sample demonstrates key MVVM features using CommunityToolkit.Mvvm"
+                          FontSize="14"
+                          Foreground="#7F8C8D"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Interactive Demo Section -->
+        <Border Grid.Row="1" 
+                Background="White" 
+                CornerRadius="5" 
+                Padding="20"
+                Margin="0,0,0,20">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" Opacity="0.2"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Counter Demo -->
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Counter Demo (RelayCommand)" 
+                              FontWeight="SemiBold" 
+                              FontSize="16"
+                              Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="{Binding Counter, StringFormat='Current Count: {0}'}"
+                              FontSize="20"
+                              FontWeight="Bold"
+                              HorizontalAlignment="Center"
+                              Margin="0,10"/>
+                    
+                    <StackPanel Orientation="Horizontal" 
+                               HorizontalAlignment="Center">
+                        <Button Command="{Binding DecrementCounterCommand}"
+                               Content="-"
+                               Width="40"
+                               Height="40"
+                               FontSize="20"
+                               Margin="5"/>
+                        
+                        <Button Command="{Binding ResetCounterCommand}"
+                               Content="Reset"
+                               Width="60"
+                               Height="40"
+                               Margin="5"/>
+                        
+                        <Button Command="{Binding IncrementCounterCommand}"
+                               Content="+"
+                               Width="40"
+                               Height="40"
+                               FontSize="20"
+                               Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Input Demo -->
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="ObservableProperty Demo" 
+                              FontWeight="SemiBold" 
+                              FontSize="16"
+                              Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="Enter text to add to list:"
+                              Margin="0,0,0,5"/>
+                    
+                    <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,0,0,10"
+                            Padding="5"/>
+                    
+                    <Button Command="{Binding AddItemCommand}"
+                           Content="Add to List"
+                           HorizontalAlignment="Center"
+                           Padding="10,5"
+                           Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="{Binding CurrentTime, StringFormat='Current Time: {0:HH:mm:ss}'}"
+                              HorizontalAlignment="Center"
+                              FontStyle="Italic"
+                              Foreground="#7F8C8D"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- List Demo -->
+        <Border Grid.Row="2" 
+                Background="White" 
+                CornerRadius="5" 
+                Padding="20">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" Opacity="0.2"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                          Text="ObservableCollection Demo" 
+                          FontWeight="SemiBold" 
+                          FontSize="16"
+                          Margin="0,0,0,10"/>
+
+                <ListBox Grid.Row="1"
+                        ItemsSource="{Binding Items}"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        BorderThickness="1"
+                        BorderBrush="#E0E0E0"
+                        Margin="0,0,0,10">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#F5F5F5" 
+                                   CornerRadius="3" 
+                                   Padding="10,5" 
+                                   Margin="2">
+                                <TextBlock Text="{Binding}" FontSize="14"/>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Command="{Binding ShowValidationExampleCommand}"
+                           Content="Show Validation Example"
+                           Padding="10,5"
+                           Margin="0,0,10,0"/>
+                    <Button Command="{Binding ClearItemsCommand}"
+                           Content="Clear All Items"
+                           Padding="10,5"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
