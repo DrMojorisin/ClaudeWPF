@@ -139,10 +139,17 @@ public class PerformanceOptimizationService : IPerformanceOptimizationService
     /// <summary>
     /// Create weak reference for memory-conscious scenarios
     /// Prevents memory leaks in large applications
+    ///
+    /// Note: Returns non-generic WeakReference for compatibility with WeakReferenceTable.
+    /// While WeakReference&lt;T&gt; is preferred for new code due to type safety and better API,
+    /// we maintain backward compatibility with existing infrastructure.
+    /// The non-generic version still provides the core weak reference functionality needed.
     /// </summary>
-    public WeakReference<T> CreateWeakReference<T>(T target) where T : class
+    public WeakReference CreateWeakReference<T>(T target) where T : class
     {
-        var weakRef = new WeakReference<T>(target);
+        // Create non-generic WeakReference to maintain compatibility with WeakReferenceTable
+        // which expects WeakReference (not WeakReference<T>)
+        var weakRef = new WeakReference(target);
         _weakReferences.Add(weakRef);
         return weakRef;
     }

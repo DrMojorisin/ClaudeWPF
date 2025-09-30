@@ -59,7 +59,13 @@ public class UserSettingsService : IUserSettingsService
     public void SetSetting<T>(string key, T value)
     {
         var oldValue = GetSetting<T>(key);
-        _settings.Settings[key] = value;
+
+        // Allow null values in settings - this is intentional behavior
+        // Settings can legitimately have null values to represent "not set" or "reset to default"
+        _settings.Settings[key] = value!; // Suppress null warning - null is valid for settings
+
+        // Null-conditional operator ensures safe event invocation
+        // Following .NET nullable reference best practices
         SettingsChanged?.Invoke(this, new SettingsChangedEventArgs(key, oldValue, value));
     }
 

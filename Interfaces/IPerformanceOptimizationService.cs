@@ -22,7 +22,9 @@ public interface IPerformanceOptimizationService
         int pageSize = 50);
 
     // Memory Management
-    WeakReference<T> CreateWeakReference<T>(T target) where T : class;
+    // Note: Using non-generic WeakReference for compatibility with WeakReferenceTable
+    // While WeakReference<T> is preferred, our internal table infrastructure expects non-generic
+    WeakReference CreateWeakReference<T>(T target) where T : class;
     void PerformMemoryCleanup(bool forceGC = false);
     MemoryUsageReport GetMemoryUsageReport();
 

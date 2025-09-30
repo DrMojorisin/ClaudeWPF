@@ -79,9 +79,12 @@ public partial class SolutionExplorerViewModel : ToolViewModel
     
     private async Task OpenFileAsync(FileItem file)
     {
+        // Safe dependency injection with null fallback
+        // GetService may return null, so we handle it gracefully
+        var loggingService = App.Current.Services.GetService(typeof(LoggingService)) as LoggingService;
         var document = new Documents.TextDocumentViewModel(
             _dialogService,
-            App.Current.Services.GetService(typeof(LoggingService)) as LoggingService);
+            loggingService ?? throw new InvalidOperationException("LoggingService not registered in DI container"));
         
         document.Title = file.Name;
         document.Content = $"// Content of {file.Name}";

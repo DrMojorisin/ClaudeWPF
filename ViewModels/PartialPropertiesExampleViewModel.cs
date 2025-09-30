@@ -39,15 +39,15 @@ public partial class PartialPropertiesExampleViewModel : ObservableValidator
     [MinLength(2)]
     public partial string LastName { get; set; } = string.Empty;
 
-    // Partial property with override modifier (new in 8.4)
+    // Partial property for tracking operation status
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ProcessCommand))]
-    public new partial bool IsBusy { get; set; }
+    public partial bool IsBusy { get; set; }
 
-    // Partial property with sealed modifier support
+    // Partial property with status tracking
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(StatusDisplay))]
-    public sealed partial string Status { get; set; } = "Ready";
+    public partial string Status { get; set; } = "Ready";
 
     // Partial property with required modifier (C# 11 feature)
     [ObservableProperty]
@@ -87,24 +87,19 @@ public partial class PartialPropertiesExampleViewModel : ObservableValidator
     #region Constructor with Required Properties
 
     /// <summary>
-    /// Constructor demonstrating required property initialization
+    /// Constructor with required property initialization via object initializer
+    /// TenantId must be set via object initializer: new ViewModel(...) { TenantId = "value" }
     /// </summary>
     public PartialPropertiesExampleViewModel(
         IDialogService dialogService,
-        IPerformanceOptimizationService performanceService,
-        string tenantId) // Required for TenantId property
+        IPerformanceOptimizationService performanceService)
     {
         _dialogService = dialogService;
         _performanceService = performanceService;
 
-        // Initialize required property
-        TenantId = tenantId;
-
         // Initialize performance-optimized collections
         Items = _performanceService.CreateOptimizedCollection<string>(100);
         Results = _performanceService.CreateOptimizedCollection<ProcessingResult>(50);
-
-        Title = "Partial Properties Example";
     }
 
     #endregion
@@ -244,7 +239,7 @@ public partial class PartialPropertiesExampleViewModel : ObservableValidator
     #region Property Change Handlers
 
     // Partial property change handlers benefit from enhanced nullability in 8.4
-    partial void OnEmailChanged(string? oldValue, string newValue)
+    partial void OnEmailChanged(string oldValue, string newValue)
     {
         // Custom logic when email changes
         if (!string.IsNullOrEmpty(newValue) && newValue.Contains("@"))
@@ -253,7 +248,7 @@ public partial class PartialPropertiesExampleViewModel : ObservableValidator
         }
     }
 
-    partial void OnStatusChanged(string? oldValue, string newValue)
+    partial void OnStatusChanged(string oldValue, string newValue)
     {
         // Log status changes for audit trail
         Items.Add($"{DateTime.Now:HH:mm:ss} - Status: {newValue}");

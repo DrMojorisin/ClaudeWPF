@@ -157,7 +157,9 @@ public class ExceptionHandler
                 Is64BitProcess = Environment.Is64BitProcess,
                 WorkingSet = Environment.WorkingSet,
                 UserName = Environment.UserName,
-                AppVersion = _configurationService.GetValue<string>("ApplicationSettings:Version", "Unknown")
+                // Safe null handling for configuration service
+                // GetValue may return null, so we provide a fallback value
+                AppVersion = _configurationService?.GetValue<string>("ApplicationSettings:Version", "Unknown") ?? "Unknown"
             }
         };
         

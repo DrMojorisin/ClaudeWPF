@@ -140,12 +140,23 @@ public class KeyboardShortcutService : IKeyboardShortcutService
         return false;
     }
 
+    /// <summary>
+    /// Load shortcuts from user settings asynchronously
+    ///
+    /// Note: Currently performs synchronous operations but maintains async signature
+    /// for future compatibility (e.g., when adding file I/O or database operations).
+    /// Using Task.CompletedTask pattern for consistent async interface.
+    /// </summary>
     public async Task LoadShortcutsAsync()
     {
         try
         {
             var savedShortcuts = _userSettingsService.GetSetting<Dictionary<string, ShortcutSettings>>(SHORTCUTS_SETTINGS_KEY);
-            if (savedShortcuts == null) return;
+            if (savedShortcuts == null)
+            {
+                await Task.CompletedTask; // Maintain async signature for future extensibility
+                return;
+            }
 
             foreach (var (commandName, settings) in savedShortcuts)
             {
@@ -167,6 +178,9 @@ public class KeyboardShortcutService : IKeyboardShortcutService
                     }
                 }
             }
+
+            // Complete asynchronously to maintain proper async pattern
+            await Task.CompletedTask;
         }
         catch (Exception ex)
         {

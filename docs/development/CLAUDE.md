@@ -22,7 +22,10 @@ This is a **modernized, production-ready** WPF MVVM framework using 2024-2025 be
 - **FluentValidation** - Business rule validation ✅
 - **Serilog** - Structured logging ✅
 - **System.Reactive** - Reactive programming extensions ✅
-- **Microsoft.Extensions.DependencyInjection** - DI container ✅
+- **Microsoft.Extensions.DependencyInjection** - Primary DI container ✅
+- **DryIoc** - Optional for advanced scenarios (decorators, AOP) ✅
+
+> **DI Container Choice**: See `DI_CONTAINER_ARCHITECTURE.md` for explanation of why Microsoft.Extensions.DI is primary and when to use DryIoc
 
 ## 🚀 MODERN PATTERNS (2024-2025) - Ready for Claude Code
 

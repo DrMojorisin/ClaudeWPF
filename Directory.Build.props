@@ -1,0 +1,63 @@
+<Project>
+
+  <!-- Global properties for all projects -->
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningsNotAsErrors>nullable</WarningsNotAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Package information -->
+  <PropertyGroup>
+    <Authors>WPFBase Contributors</Authors>
+    <Company>WPFBase</Company>
+    <Product>WPFBase Framework</Product>
+    <Copyright>Copyright © 2024 WPFBase Contributors</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/DrMojorisin/ClaudeWPF</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DrMojorisin/ClaudeWPF.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>wpf;mvvm;dotnet;framework;communitytoolkit</PackageTags>
+  </PropertyGroup>
+
+  <!-- Source Link for debugging -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <!-- Code analysis -->
+  <PropertyGroup>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)code-analysis.ruleset</CodeAnalysisRuleSet>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+
+  <!-- Global package references -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!-- Test project specific properties -->
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Test'))">
+    <IsPackable>false</IsPackable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- Exclude documentation warnings for generated files -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+</Project>

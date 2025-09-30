@@ -1,0 +1,40 @@
+<UserControl x:Class="WPFBase.Views.Examples.SimpleModernView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d">
+
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="WPF UI 4.0.3 Basic Components Test"
+                      FontSize="24"
+                      FontWeight="SemiBold"
+                      Margin="0,0,0,20" />
+
+            <!-- Test basic WPF UI button -->
+            <ui:Button Content="Modern Button Test"
+                      Appearance="Primary"
+                      Margin="0,10" />
+
+            <!-- Test symbol icon -->
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <ui:SymbolIcon Symbol="Home24" FontSize="24" Margin="0,0,10,0" />
+                <TextBlock Text="Symbol Icon Test" VerticalAlignment="Center" />
+            </StackPanel>
+
+            <!-- Test card background -->
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                   CornerRadius="8"
+                   Padding="16"
+                   Margin="0,10">
+                <TextBlock Text="Card Background Test" />
+            </Border>
+
+            <TextBlock Text="If you can see this properly styled, WPF UI 4.0.3 is working!"
+                      FontStyle="Italic"
+                      Margin="0,20" />
+        </StackPanel>
+    </Grid>
+</UserControl>

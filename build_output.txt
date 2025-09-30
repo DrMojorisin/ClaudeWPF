@@ -1,0 +1,4 @@
+MSBUILD : error MSB1009: Project file does not exist.
+Switch: p:TreatWarningsAsErrors=false
+
+Workload updates are available. Run `dotnet workload list` for more information.

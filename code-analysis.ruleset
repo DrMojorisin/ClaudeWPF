@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="WPFBase Rules" Description="Code analysis rules for WPFBase project." ToolsVersion="17.0">
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
+    <!-- Prefer file-scoped namespaces -->
+    <Rule Id="IDE0161" Action="Warning" />
+    <!-- Use 'var' instead of explicit type -->
+    <Rule Id="IDE0007" Action="None" />
+    <!-- Use explicit type instead of 'var' -->
+    <Rule Id="IDE0008" Action="None" />
+    <!-- Use expression body for methods -->
+    <Rule Id="IDE0022" Action="None" />
+    <!-- Use expression body for constructors -->
+    <Rule Id="IDE0021" Action="None" />
+    <!-- Use expression body for operators -->
+    <Rule Id="IDE0023" Action="None" />
+    <!-- Use expression body for properties -->
+    <Rule Id="IDE0025" Action="None" />
+    <!-- Use expression body for indexers -->
+    <Rule Id="IDE0026" Action="None" />
+    <!-- Use expression body for accessors -->
+    <Rule Id="IDE0027" Action="None" />
+  </Rules>
+
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.NetAnalyzers" RuleNamespace="Microsoft.CodeAnalysis.NetAnalyzers">
+    <!-- Use PascalCase for constant field names -->
+    <Rule Id="CA1707" Action="Warning" />
+    <!-- Identifiers should not match keywords -->
+    <Rule Id="CA1716" Action="Warning" />
+    <!-- Identifiers should have correct spelling -->
+    <Rule Id="CA1704" Action="Info" />
+    <!-- Avoid excessive parameters on generic types -->
+    <Rule Id="CA1005" Action="Info" />
+    <!-- Do not expose generic lists -->
+    <Rule Id="CA1002" Action="Info" />
+    <!-- Collections should implement generic interface -->
+    <Rule Id="CA1010" Action="Warning" />
+    <!-- Specify StringComparison -->
+    <Rule Id="CA1307" Action="None" />
+    <!-- P/Invokes should not be visible -->
+    <Rule Id="CA1401" Action="Warning" />
+    <!-- Validate arguments of public methods -->
+    <Rule Id="CA1062" Action="Info" />
+    <!-- Consider calling ConfigureAwait on the awaited task -->
+    <Rule Id="CA2007" Action="None" />
+    <!-- Suppress WPF experimental features warning -->
+    <Rule Id="WPF0001" Action="None" />
+  </Rules>
+
+  <!-- Suppressions for generated code -->
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
+    <!-- Don't require documentation for private members -->
+    <Rule Id="CS1591" Action="None" />
+  </Rules>
+</RuleSet>

@@ -57,7 +57,7 @@ public class ModernThemeService : IThemeService
             });
 
             _logger.LogInformation("Successfully applied theme: {ThemeName}", themeName);
-            ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(_currentTheme));
+            ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(_currentTheme, theme));
         }
         catch (Exception ex)
         {
@@ -83,6 +83,34 @@ public class ModernThemeService : IThemeService
     }
 
     /// <summary>
+    /// Apply theme by ApplicationTheme object
+    /// </summary>
+    public async Task ApplyThemeAsync(ApplicationTheme theme)
+    {
+        await ApplyThemeAsync(theme.Name);
+    }
+
+    /// <summary>
+    /// Save current theme as default preference
+    /// </summary>
+    public async Task SaveThemePreferenceAsync()
+    {
+        try
+        {
+            // In a real implementation, this would save to user settings
+            _logger.LogInformation("Saving theme preference: {ThemeName}", _currentTheme.Name);
+
+            // For now, just log the action
+            await Task.CompletedTask;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to save theme preference");
+            throw;
+        }
+    }
+
+    /// <summary>
     /// Apply system theme that responds to Windows 11 theme changes
     /// </summary>
     public async Task ApplySystemThemeAsync()
@@ -91,17 +119,18 @@ public class ModernThemeService : IThemeService
 
         try
         {
+            var systemTheme = _availableThemes.First(t => t.Mode == AppThemeMode.System);
+
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
                 // Use .NET 9 System theme mode for automatic light/dark switching
                 Application.Current.ThemeMode = ThemeMode.System;
 
-                var systemTheme = _availableThemes.First(t => t.Mode == AppThemeMode.System);
                 _currentTheme = systemTheme;
             });
 
             _logger.LogInformation("Successfully applied system theme");
-            ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(_currentTheme));
+            ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(null, systemTheme));
         }
         catch (Exception ex)
         {
@@ -110,7 +139,7 @@ public class ModernThemeService : IThemeService
         }
     }
 
-    public Task<ApplicationTheme> LoadCustomThemeAsync(string filePath)
+    public Task<ApplicationTheme?> LoadCustomThemeAsync(string filePath)
     {
         // For custom themes, we still use resource dictionaries
         // but integrate with the Fluent base theme
@@ -148,48 +177,77 @@ public class ModernThemeService : IThemeService
         }
         catch (Exception ex)
         {
-            _logger.LogWarning(ex, "Could not apply accent color");
+            // Using custom ILoggingService interface - no exception overload for LogWarning
+            // Following structured logging best practices with message and exception details
+            _logger.LogWarning("Could not apply accent color: {ErrorMessage}", ex.Message);
         }
     }
 
     /// <summary>
     /// Initialize themes using .NET 9 Fluent capabilities
+    ///
+    /// Following 2024 WPF best practices:
+    /// - Using existing ApplicationTheme properties to maintain YAGNI principle
+    /// - ResourceDictionaryPath (singular) instead of ResourceDictionaries (plural)
+    /// - Name property serves as both identifier and display name
+    /// - Comments provide description functionality
+    /// - Supports .NET 9 Fluent theme with proper resource paths
     /// </summary>
     private List<ApplicationTheme> InitializeNativeThemes()
     {
         return new List<ApplicationTheme>
         {
+            // .NET 9 Fluent Light Theme - Modern Windows 11 styling with light appearance
             new()
             {
-                Name = "Fluent Light",
+                Name = "Light (Fluent)",
                 Mode = AppThemeMode.Light,
-                DisplayName = "Light (Fluent)",
-                Description = ".NET 9 Fluent light theme with Windows 11 styling",
-                ResourceDictionaries = new[] { "/PresentationFramework.Fluent;component/Themes/Fluent.xaml" }
+                ResourceDictionaryPath = "/PresentationFramework.Fluent;component/Themes/Fluent.xaml",
+                // Light theme color palette optimized for .NET 9 Fluent design
+                PrimaryColor = "#0078D4",
+                AccentColor = "#106EBE",
+                BackgroundColor = "#FFFFFF",
+                ForegroundColor = "#000000",
+                BorderColor = "#E1E1E1"
             },
+            // .NET 9 Fluent Dark Theme - Modern Windows 11 styling with dark appearance
             new()
             {
-                Name = "Fluent Dark",
+                Name = "Dark (Fluent)",
                 Mode = AppThemeMode.Dark,
-                DisplayName = "Dark (Fluent)",
-                Description = ".NET 9 Fluent dark theme with Windows 11 styling",
-                ResourceDictionaries = new[] { "/PresentationFramework.Fluent;component/Themes/Fluent.xaml" }
+                ResourceDictionaryPath = "/PresentationFramework.Fluent;component/Themes/Fluent.xaml",
+                // Dark theme color palette optimized for .NET 9 Fluent design
+                PrimaryColor = "#60CDFF",
+                AccentColor = "#0078D4",
+                BackgroundColor = "#202020",
+                ForegroundColor = "#FFFFFF",
+                BorderColor = "#404040"
             },
+            // System Theme - Automatically follows Windows 11 system theme preference
             new()
             {
-                Name = "System",
+                Name = "System (Auto)",
                 Mode = AppThemeMode.System,
-                DisplayName = "System (Auto)",
-                Description = "Automatically follows Windows 11 system theme",
-                ResourceDictionaries = new[] { "/PresentationFramework.Fluent;component/Themes/Fluent.xaml" }
+                ResourceDictionaryPath = "/PresentationFramework.Fluent;component/Themes/Fluent.xaml",
+                // Neutral colors that work with both light/dark system themes
+                PrimaryColor = "#0078D4",
+                AccentColor = "#106EBE",
+                BackgroundColor = "#FFFFFF", // Will be overridden by system
+                ForegroundColor = "#000000", // Will be overridden by system
+                BorderColor = "#E1E1E1"     // Will be overridden by system
             },
+            // Classic WPF Theme - Traditional Aero2 theme for compatibility
             new()
             {
-                Name = "Classic",
+                Name = "Classic WPF",
                 Mode = AppThemeMode.Light,
-                DisplayName = "Classic WPF",
-                Description = "Traditional WPF Aero2 theme",
-                ResourceDictionaries = Array.Empty<string>() // Uses default Aero2
+                ResourceDictionaryPath = null, // Uses default Aero2 - no custom resources needed
+                // Classic WPF Aero2 color scheme
+                PrimaryColor = "#2196F3",
+                AccentColor = "#FF4081",
+                BackgroundColor = "#F0F0F0",
+                ForegroundColor = "#000000",
+                BorderColor = "#CCCCCC"
             }
         };
     }

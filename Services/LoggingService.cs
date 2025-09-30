@@ -11,11 +11,16 @@ namespace WPFBase.Services;
 /// <summary>
 /// Centralized logging service using Serilog
 /// </summary>
-public class LoggingService : IDisposable
+public class LoggingService : ILoggingService, IDisposable
 {
     private readonly Serilog.ILogger _logger;
     private readonly IConfigurationService _configurationService;
     private readonly string _logDirectory;
+
+    /// <summary>
+    /// Get the underlying Microsoft.Extensions.Logging.ILogger instance
+    /// </summary>
+    public Microsoft.Extensions.Logging.ILogger Logger => CreateLogger("WPFBase.Services.LoggingService");
     
     public LoggingService(IConfigurationService configurationService)
     {
@@ -36,11 +41,14 @@ public class LoggingService : IDisposable
         }
         Directory.CreateDirectory(_logDirectory);
         
-        var fullLogPath = Path.Combine(_logDirectory, Path.GetFileName(logPath));
+        // Safely handle potential null from Path.GetFileName
+        // If logPath is null/empty, fallback to default filename
+        var fileName = Path.GetFileName(logPath) ?? "application.log";
+        var fullLogPath = Path.Combine(_logDirectory, fileName);
         
         // Configure Serilog
         var loggerConfig = new LoggerConfiguration()
-            .MinimumLevel.Is(ParseLogLevel(logLevel))
+            .MinimumLevel.Is(ParseLogLevel(logLevel ?? "Information"))
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
             .MinimumLevel.Override("System", LogEventLevel.Warning)
             .Enrich.FromLogContext()
@@ -142,6 +150,15 @@ public class LoggingService : IDisposable
     public IDisposable BeginScope(string name, object properties)
     {
         return _logger.ForContext(name, properties, destructureObjects: true)
+            as IDisposable ?? new NoOpDisposable();
+    }
+
+    /// <summary>
+    /// Begin a logging scope
+    /// </summary>
+    public IDisposable BeginScope<TState>(TState state) where TState : notnull
+    {
+        return _logger.ForContext("Scope", state, destructureObjects: true)
             as IDisposable ?? new NoOpDisposable();
     }
     

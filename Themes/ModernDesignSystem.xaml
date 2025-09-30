@@ -168,7 +168,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="{StaticResource Spacing4},8"/>
+        <Setter Property="Padding" Value="16,8"/>
         <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Medium"/>
@@ -222,7 +222,7 @@
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextSecondaryBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="{StaticResource Spacing3},8"/>
+        <Setter Property="Padding" Value="12,8"/>
         <Setter Property="FontFamily" Value="{StaticResource SegoeUIVariable}"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="MinHeight" Value="32"/>

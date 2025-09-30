@@ -106,8 +106,10 @@ public class ThemeService : IThemeService
                 UpdateSystemColors(theme.Mode);
             });
 
-            _loggingService.LogInformation("Theme changed from {OldTheme} to {NewTheme}", 
-                oldTheme?.Name, theme.Name);
+            // Safe parameter handling for structured logging
+            // Ensuring both parameters are non-null for proper log formatting
+            _loggingService.LogInformation("Theme changed from {OldTheme} to {NewTheme}",
+                oldTheme?.Name ?? "None", theme.Name ?? "Unknown");
             
             // Raise event
             ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(oldTheme, theme));

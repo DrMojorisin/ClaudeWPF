@@ -1,0 +1,29 @@
+  Determining projects to restore...
+  Restored C:\DEVELOPMENT\Projects\WPFBase\WPFBase.csproj (in 331 ms).
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(50,24): warning CS8601: Possible null reference assignment. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(55,46): warning CS8604: Possible null reference argument for parameter 'name' in 'ActivitySource.ActivitySource(string name, string? version = "")'. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(115,50): warning CS8601: Possible null reference assignment. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(128,48): warning CS8604: Possible null reference argument for parameter 'uriString' in 'Uri.Uri(string uriString)'. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(140,48): warning CS8604: Possible null reference argument for parameter 'uriString' in 'Uri.Uri(string uriString)'. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\ResilienceService.cs(160,53): error CS1503: Argument 1: cannot convert from 'System.Func<System.Threading.CancellationToken, System.Threading.Tasks.Task<T>>' to 'System.Func<Polly.ResilienceContext, System.Threading.Tasks.ValueTask>' [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\ResilienceService.cs(160,64): error CS1503: Argument 2: cannot convert from 'System.Threading.CancellationToken' to 'Polly.ResilienceContext' [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\ResilienceService.cs(173,59): error CS1503: Argument 1: cannot convert from 'System.Func<System.Threading.CancellationToken, System.Threading.Tasks.Task<T>>' to 'System.Func<Polly.ResilienceContext, System.Threading.Tasks.ValueTask>' [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\ResilienceService.cs(173,70): error CS1503: Argument 2: cannot convert from 'System.Threading.CancellationToken' to 'Polly.ResilienceContext' [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+
+Build FAILED.
+
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(50,24): warning CS8601: Possible null reference assignment. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(55,46): warning CS8604: Possible null reference argument for parameter 'name' in 'ActivitySource.ActivitySource(string name, string? version = "")'. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(115,50): warning CS8601: Possible null reference assignment. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(128,48): warning CS8604: Possible null reference argument for parameter 'uriString' in 'Uri.Uri(string uriString)'. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\TelemetryService.cs(140,48): warning CS8604: Possible null reference argument for parameter 'uriString' in 'Uri.Uri(string uriString)'. [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\ResilienceService.cs(160,53): error CS1503: Argument 1: cannot convert from 'System.Func<System.Threading.CancellationToken, System.Threading.Tasks.Task<T>>' to 'System.Func<Polly.ResilienceContext, System.Threading.Tasks.ValueTask>' [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\ResilienceService.cs(160,64): error CS1503: Argument 2: cannot convert from 'System.Threading.CancellationToken' to 'Polly.ResilienceContext' [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\ResilienceService.cs(173,59): error CS1503: Argument 1: cannot convert from 'System.Func<System.Threading.CancellationToken, System.Threading.Tasks.Task<T>>' to 'System.Func<Polly.ResilienceContext, System.Threading.Tasks.ValueTask>' [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+C:\DEVELOPMENT\Projects\WPFBase\Services\ResilienceService.cs(173,70): error CS1503: Argument 2: cannot convert from 'System.Threading.CancellationToken' to 'Polly.ResilienceContext' [C:\DEVELOPMENT\Projects\WPFBase\WPFBase_hge13b5x_wpftmp.csproj]
+    5 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:04.27
+
+Workload updates are available. Run `dotnet workload list` for more information.
